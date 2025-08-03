@@ -4,7 +4,6 @@ body:
   - type: markdown
     attributes:
       value: |
-        <br>
         # Some background info before we start
         
 
@@ -51,8 +50,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        <br>
-        # Onto the main event:
+        # Onto the main event
   
   - type: textarea
     id: bug_description
@@ -99,5 +97,5 @@ body:
   - type: markdown
     attributes:
       value: |
-        <br>
+        ---
         ### Thank you for your report!
