@@ -1,13 +1,11 @@
-name: Auto-assign Bug Reports
+name: Auto-Label Issues
 on:
     issues:
         types: [opened]
 
 jobs:
-    auto-assign-bugs:
+    auto-label:
         runs-on: ubuntu-latest
-        # Only run if this looks like a bug report from your template
-        if: contains(github.event.issue.body, 'Bug Description') && contains(github.event.issue.body, 'LE Variant')
 
         steps:
             - name: Checkout repository
@@ -19,41 +17,33 @@ jobs:
               with:
                   template-path: .github/ISSUE_TEMPLATE/le_bug.yml
 
-            - name: Show parsed data (for debugging)
-              run: |
-                  echo "Parsed JSON: ${{ steps.parse.outputs.jsonString }}"
-
-            - name: Assign labels and projects based on bug report
+            - name: Add labels based on parsed form data
               uses: actions/github-script@v7
-              env:
-                  PARSED_DATA: ${{ steps.parse.outputs.jsonString }}
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const parsedData = JSON.parse(process.env.PARSED_DATA);
+                      const parsedData = JSON.parse(`${{ steps.parse.outputs.jsonString }}`);
 
-                      console.log('Parsed bug report data:', parsedData);
+                      console.log('Parsed issue form data:', parsedData);
 
-                      // Extract field values using the IDs from your template
-                      const leVariant = parsedData.le_mod;
-                      const installMethod = parsedData.ds3le_install_method;
-
-                      console.log('LE Variant:', leVariant);
-                      console.log('Install Method:', installMethod);
-
-                      // Start with bug label
                       const labelsToAdd = [];
 
-                      // Add labels based on installation method
-                      if (installMethod === 'Mod Engine 2') {
-                        labelsToAdd.push('me2');
-                      } else if (installMethod === 'UXM') {
-                        labelsToAdd.push('uxm');
+                      // Add labels based on LE variant
+                      if (parsedData.le_mod === 'Dark Souls 2 Lighting Engine') {
+                        labelsToAdd.push('ds2le');
+                      } else if (parsedData.le_mod === 'Dark Souls 3 Lighting Engine') {
+                        labelsToAdd.push('ds3le');
+                      } else if (parsedData.le_mod === 'Dark Souls 3 Lighting Engine Lite') {
+                        labelsToAdd.push('ds3le-lite');
+                      } else if (parsedData.le_mod === 'Sekiro Renderer Update') {
+                        labelsToAdd.push('sekiro');
                       }
 
-                      // Add labels based on LE variant
-                      if (leVariant === 'Dark Souls 3 Lighting Engine Lite') {
-                        labelsToAdd.push('lite');
+                      // Add labels based on installation method
+                      if (parsedData.ds3le_install_method === 'Mod Engine 2') {
+                        labelsToAdd.push('me2');
+                      } else if (parsedData.ds3le_install_method === 'UXM') {
+                        labelsToAdd.push('uxm');
                       }
 
                       if (labelsToAdd.length > 0) {
@@ -63,37 +53,8 @@ jobs:
                           issue_number: context.payload.issue.number,
                           labels: labelsToAdd
                         });
+
                         console.log('Added labels:', labelsToAdd);
-                      }
-
-                      const projectAssignments = {
-                        'Dark Souls 2 Lighting Engine': '${{ secrets.DS2LE_PROJECT_ID }}',        // Replace with your DS2LE project ID
-                        'Dark Souls 3 Lighting Engine': '${{ secrets.DS3LE_PROJECT_ID }}',        // Replace with your DS3LE project ID
-                        'Dark Souls 3 Lighting Engine Lite': '${{ secrets.DS3LE_PROJECT_ID }}',   // Same as DS3LE project ID
-                        'Sekiro Renderer Update': '${{ secrets.SEKIRO_PROJECT_ID }}'               // Replace with your Sekiro project ID
-                      };
-
-                      if (leVariant && projectAssignments[leVariant]) {
-                        const projectId = projectAssignments[leVariant];
-                        
-                        try {
-                          await github.graphql(`
-                            mutation($projectId: ID!, $issueId: ID!) {
-                              addProjectV2ItemById(input: {projectId: $projectId, contentId: $issueId}) {
-                                item {
-                                  id
-                                }
-                              }
-                            }
-                          `, {
-                            projectId: projectId,
-                            issueId: context.payload.issue.node_id
-                          });
-                          console.log('Successfully assigned to project v2');
-                        } catch (error) {
-                          console.error('Failed to assign to project v2:', error);
-                          console.error('Error details:', error.message);
-                        }
-                      } else if (leVariant) {
-                        console.log('No project assignment configured for variant:', leVariant);
+                      } else {
+                        console.log('No labels matched for this issue.');
                       }
