@@ -1,0 +1,99 @@
+name: Bug Report
+description: Unintended/broken behavior with LE, that isn't there without it.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Some background info before we start
+
+  - type: checkboxes
+    attributes:
+      label: Acknowledgements
+      description: "Before submitting a bug report, please confirm the following:"
+      options:
+        - label: "My game has been purchased through Steam/obtained legally. I did not try installing the mod on a pirated copy."
+          required: true
+        - label: "I have searched the Wiki and FAQ for this bug, and did not find an adequate answer."
+          required: true
+        - label: "I have searched the issue tracker for this bug, and did not find an existing report."
+          required: true
+    
+  - type: dropdown
+    id: le_mod
+    attributes:
+      label: "LE Variant"
+      description: "Which variant of LE are you using?"
+      multiple: false
+      options:
+        - "Dark Souls 2 Lighting Engine"
+        - "Dark Souls 3 Lighting Engine"
+        - "Dark Souls 3 Lighting Engine Lite"
+        - "Sekiro Renderer Update"
+    
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ds3le_install_method
+    attributes:
+      label: "[DS3LE/Lite Only] Installation Method"
+      description: "UXM or Mod Engine 2?"
+      multiple: false
+      options:
+        - "Mod Engine 2"
+        - "UXM"
+
+    validations:
+      required: false
+  
+  - type: markdown
+    attributes:
+      value: |
+        Onto the main event
+  
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: "Bug Description"
+      description: "Please describe the bug in detail, you may attach screenshots or videos if necessary."
+      placeholder: "Enter bug description & attach files here..."
+
+    validations:
+      required: true
+  
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "Reproduction Steps"
+      description: "Please describe the steps to reproduce the bug, if applicable."
+      placeholder: "Load into the game, go to a specific location after a specific event, open a specific menu, etc..."
+
+    validations:
+      required: true
+
+  - type: textarea
+    id: specs
+    attributes:
+      label: "System Specifications"
+      description: "Please provide your system specifications, including OS, GPU, CPU, HDD/SSD, etc. (If you're on a handheld PC, please specify that as well.)"
+      placeholder: "Enter your system specs here..."
+      value: |
+        - OS: 
+        - GPU:
+        - CPU:
+        - Storage Method [HDD/SSD]:
+      
+    validations:
+      required: true
+  
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Additional Information"
+      description: "Please provide any additional information that may help us diagnose the issue, such as other mods installed, game version, etc. If you have a log file, please attach it as well."
+      placeholder: "Enter any additional information here..."
+
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your report!
