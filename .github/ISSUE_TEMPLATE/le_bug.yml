@@ -4,7 +4,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Some background info before we start
+        ### Some background info before we start
+        ---
 
   - type: checkboxes
     attributes:
@@ -96,4 +97,4 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for your report!
+        # Thank you for your report!
