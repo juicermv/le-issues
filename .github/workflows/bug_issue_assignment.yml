@@ -22,7 +22,7 @@ jobs:
               env:
                   PARSED_DATA: ${{ steps.parse.outputs.jsonString }}
               with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  github-token: ${{ secrets.PAT }}
                   script: |
                       const parsedData = JSON.parse(process.env.PARSED_DATA);
 
