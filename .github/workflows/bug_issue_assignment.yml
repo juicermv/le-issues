@@ -6,6 +6,8 @@ on:
 jobs:
     auto-label:
         runs-on: ubuntu-latest
+        permissions:
+            issues: write
 
         steps:
             - name: Checkout repository
@@ -22,7 +24,7 @@ jobs:
               env:
                   PARSED_DATA: ${{ steps.parse.outputs.jsonString }}
               with:
-                  github-token: ${{ secrets.PAT }}
+                  github-token: ${{ secrets.GITHUB_TOKEN}}
                   script: |
                       const parsedData = JSON.parse(process.env.PARSED_DATA);
 
