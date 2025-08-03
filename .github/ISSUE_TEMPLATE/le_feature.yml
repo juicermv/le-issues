@@ -1,0 +1,43 @@
+name: Feature Request
+description: Suggest a new feature or improvement for LE.
+labels: 
+  - enhancement
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Acknowledgements
+      description: "Before submitting a feature request, please confirm the following:"
+      options:
+        - label: "I have searched the issue tracker for this feature, but did not find an existing request."
+          required: true
+    
+  - type: dropdown
+    id: le_mod
+    attributes:
+      label: "LE Variant"
+      description: "Which variant(s) of LE is this request for?"
+      multiple: true
+      options:
+        - DS3LE
+        - DS3LE Lite
+        - DS2LE
+    
+    validations:
+      required: true
+  
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: "Feature Description"
+      description: "Please describe the feature in detail, including any specific use cases or examples."
+      placeholder: "Enter feature description here..."
+
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Thank you for your request!

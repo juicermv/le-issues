@@ -32,14 +32,8 @@ jobs:
 
                       const labelsToAdd = [];
 
-                      // Add labels based on LE variant
-                      labelsToAdd.push(parsedData.le_mod.toLowerCase().replace(/ /g, '-'));
-
-                      // Add labels based on installation method
-                      if (parsedData.ds3le_install_method === 'Mod Engine 2') {
-                        labelsToAdd.push('me2');
-                      } else if (parsedData.ds3le_install_method === 'UXM') {
-                        labelsToAdd.push('uxm');
+                      for (const mod of parsedData.le_mod) {
+                        labelsToAdd.push(mod.toLowerCase().replace(/ /g, '-'));
                       }
 
                       if (labelsToAdd.length > 0) {

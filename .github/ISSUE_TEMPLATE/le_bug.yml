@@ -23,10 +23,9 @@ body:
       description: "Which variant of LE are you using?"
       multiple: false
       options:
-        - "Dark Souls 2 Lighting Engine"
-        - "Dark Souls 3 Lighting Engine"
-        - "Dark Souls 3 Lighting Engine Lite"
-        - "Sekiro Renderer Update"
+        - DS3LE
+        - DS3LE Lite
+        - DS2LE
     
     validations:
       required: true
