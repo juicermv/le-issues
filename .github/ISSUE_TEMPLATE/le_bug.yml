@@ -4,8 +4,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Some background info before we start
         ---
+        ## Some background info before we start...
+        
 
   - type: checkboxes
     attributes:
@@ -50,7 +51,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Onto the main event
+        ---
+        ## Onto the main event:
   
   - type: textarea
     id: bug_description
