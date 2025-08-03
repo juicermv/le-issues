@@ -4,6 +4,7 @@ body:
   - type: markdown
     attributes:
       value: |
+        <br></br>
         # Some background info before we start
         
 
@@ -50,6 +51,7 @@ body:
   - type: markdown
     attributes:
       value: |
+        <br></br>
         # Onto the main event
   
   - type: textarea
