@@ -5,8 +5,7 @@ body:
     attributes:
       value: |
         <br></br>
-        # Some background info before we start
-        
+        ## Some background info before we start
 
   - type: checkboxes
     attributes:
@@ -52,7 +51,7 @@ body:
     attributes:
       value: |
         <br></br>
-        # Onto the main event
+        ## Onto the main event
   
   - type: textarea
     id: bug_description
