@@ -12,19 +12,19 @@ body:
         - label: "I have searched the issue tracker for this feature, but did not find an existing request."
           required: true
     
-  - type: checkboxes
+  - type: dropdown
     id: le_mod
     attributes:
       label: "LE Variant"
-      description: "Which variant(s) of LE is this request for? Select all that apply."
+      description: "Which variant(s) of LE is this request for? You may select multiple."
+      multiple: true
       options:
-        - label: "DS3LE"
-        - label: "DS3LE Lite"
-        - label: "DS2LE"
-
+        - DS3LE
+        - DS3LE Lite
+        - DS2LE
+    
     validations:
       required: true
-
   
   - type: textarea
     id: feature_description

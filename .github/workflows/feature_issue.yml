@@ -34,7 +34,7 @@ jobs:
 
                       const labelsToAdd = [];
 
-                      for (const mod of parsedData.le_mod) {
+                      for (const mod of parsedData.le_mod.split(',')) {
                         labelsToAdd.push(mod.toLowerCase().replace(/ /g, '-'));
                       }
 
