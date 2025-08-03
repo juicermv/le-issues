@@ -1,5 +1,8 @@
 name: Bug Report
 description: Unintended/broken behavior with LE, that isn't there without it.
+labels: 
+  - bug
+
 body:
   - type: checkboxes
     attributes:
@@ -8,9 +11,9 @@ body:
       options:
         - label: "My game has been purchased through Steam/obtained legally. I did not try installing the mod on a pirated copy."
           required: true
-        - label: "I have searched the Wiki and FAQ for a solution, and did not find an adequate answer."
+        - label: "I have searched the Wiki and FAQ for a solution, but did not find an adequate answer."
           required: true
-        - label: "I have searched the issue tracker for this bug, and did not find an existing report."
+        - label: "I have searched the issue tracker for this bug, but did not find an existing report."
           required: true
     
   - type: dropdown
@@ -31,7 +34,7 @@ body:
   - type: dropdown
     id: ds3le_install_method
     attributes:
-      label: "[DS3LE/Lite Only] Installation Method"
+      label: "(DS3LE/Lite Only) Installation Method"
       description: "UXM or Mod Engine 2?"
       multiple: false
       options:
