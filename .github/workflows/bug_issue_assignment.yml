@@ -19,10 +19,12 @@ jobs:
 
             - name: Add labels based on parsed form data
               uses: actions/github-script@v7
+              env:
+                  PARSED_DATA: ${{ steps.parse.outputs.jsonString }}
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const parsedData = JSON.parse(`${{ steps.parse.outputs.jsonString }}`);
+                      const parsedData = JSON.parse(process.env.PARSED_DATA);
 
                       console.log('Parsed issue form data:', parsedData);
 
