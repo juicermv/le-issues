@@ -51,7 +51,7 @@ jobs:
 
                       // Add labels based on LE variant
                       if (leVariant === 'Dark Souls 3 Lighting Engine Lite') {
-                        labelsToAdd.push(lite');
+                        labelsToAdd.push('lite');
                       }
 
                       if (labelsToAdd.length > 0) {
