@@ -1,4 +1,4 @@
-name: Auto-Label Issues
+name: Auto-Label Bugs
 on:
     issues:
         types: [opened]
@@ -6,6 +6,8 @@ on:
 jobs:
     auto-label:
         runs-on: ubuntu-latest
+        if: contains(github.event.issue.body, 'Bug Description') && contains(github.event.issue.body, 'LE Variant')
+
         permissions:
             issues: write
 

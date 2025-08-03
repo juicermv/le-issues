@@ -1,4 +1,4 @@
-name: Auto-Label Issues
+name: Auto-Label Feature Requests
 on:
     issues:
         types: [opened]
@@ -6,6 +6,8 @@ on:
 jobs:
     auto-label:
         runs-on: ubuntu-latest
+        if: contains(github.event.issue.body, 'Feature Description') && contains(github.event.issue.body, 'LE Variant')
+
         permissions:
             issues: write
 
@@ -17,7 +19,7 @@ jobs:
               id: parse
               uses: stefanbuck/github-issue-parser@v3
               with:
-                  template-path: .github/ISSUE_TEMPLATE/le_bug.yml
+                  template-path: .github/ISSUE_TEMPLATE/le_feature.yml
 
             - name: Add labels based on parsed form data
               uses: actions/github-script@v7
