@@ -20,8 +20,8 @@ body:
     id: le_mod
     attributes:
       label: "LE Variant"
-      description: "Which variant of LE are you using?"
-      multiple: false
+      description: "Which variant(s) of LE does this apply to? You may select multiple."
+      multiple: true
       options:
         - DS3LE
         - DS3LE Lite
